@@ -1,0 +1,47 @@
+﻿@using WorldNews.Core.DTOs;
+@model LoginViewModel
+
+<br />
+<br />
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card">
+                <header class="card-header">
+                    <h4 class="card-title mt-2">Login</h4>
+                </header>
+                <article class="card-body">
+                    <form asp-action="Login">
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label>First name </label>
+                                <input type="text" class="form-control" asp-for="UserName" placeholder="">
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div> <!-- form-group end.// -->
+                            <div class="col form-group">
+                                <label>Last name</label>
+                                <input type="password" class="form-control" asp-for="Password" placeholder=" ">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div> <!-- form-group end.// -->
+                            <div class="col form-group" style="padding-left : 2.3em">
+                                <input asp-for="@Model.RememberMe" type="checkbox" name="remember" id="remember" class="form-check-input">
+                                <label>Remember Me</label>
+                            </div>
+                        </div> <!-- form-row end.// -->
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+                        </div> <!-- form-group// -->
+                    </form>
+                </article> <!-- card-body end .// -->
+                <div class="border-top card-body text-center">Don't Have an account? <a asp-action="Register">Register</a></div>
+            </div> <!-- card.// -->
+        </div> <!-- col.//-->
+
+    </div> <!-- row.//-->
+
+
+</div>
+<!--container end.//-->
+<br />
+<br />

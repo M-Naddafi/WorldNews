@@ -1,0 +1,181 @@
+﻿@page
+@model WorldNews.Pages.NewsPanel.IndexModel
+@{
+}
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                News
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.news.News.Count()</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-envelope fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Sections
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.news.Sections.Count()</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                Breaking News
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">@Model.news.News.Where(n => n.BreakingNews).Count()</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-bell fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Highlights
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.news.News.Where(n => n.HighlightNews).Count()</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">News</h1>
+        <a asp-page="AddNews" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-upload fa-sm text-white-50"></i> Add News
+        </a>
+    </div>
+</div>
+
+<div class="container-fluid">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"></h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="row">
+                        <form style="padding-left : 0">
+                            <div class="col-sm-12 col-md-12">
+                                <div id="dataTable_filter" class="dataTables_filter">
+                                    <label>Search:<input name="filterTitle" type="search" class="form-control form-control-sm" placeholder="Title" aria-controls="dataTable"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <div id="dataTable_filter" class="dataTables_filter">
+                                    <input name="filterSection" type="search" class="form-control form-control-sm" placeholder="Section" aria-controls="dataTable">
+                                </div>
+                            </div>
+                            <br />
+                            <div class="col-sm-12 col-md-6">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                            <br />
+                        </form>
+                    </div><div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="1" colspan="1">Title</th>
+                                        <th rowspan="1" colspan="1">Section</th>
+                                        <th rowspan="1" colspan="1">Breaking</th>
+                                        <th rowspan="1" colspan="1">Highlight</th>
+                                        <th rowspan="1" colspan="1">Create Date</th>
+                                        <th rowspan="1" colspan="1">Operations</th>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.news.News.OrderBy(n=> n.CreateDate).Reverse())
+                                    {
+                                        <tr class="odd">
+                                            <td class="sorting_1">@item.NewsTitle</td>
+                                            <td>@item.Section.SectionName</td>
+                                            <td><input disabled asp-for="@item.BreakingNews" /></td>
+                                            <td><input disabled asp-for="@item.HighlightNews" /></td>
+                                            <td>@item.CreateDate</td>
+                                            <td>
+                                                <a asp-route-id="@item.NewsId" asp-page="EditNews">Edit</a> |
+                                                <a asp-route-id="@item.NewsId" asp-page="DeleteNews">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-7">
+                            <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                                <ul class="pagination">
+                                    @for (int i = 1; i <= Model.news.PageCount; i++)
+                                    {
+                                        <li class="paginate_button page-item active @((i==Model.news.CurrentPage)?"active":"")" aria-controls="dataTables-example" tabindex="0">
+                                            <a class="page-link" href="/NewsPanel?PageId=@i">@i</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

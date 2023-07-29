@@ -1,0 +1,55 @@
+﻿@page
+@model WorldNews.Pages.NewsPanel.AddNewsModel
+@{
+
+}
+
+<div class="container p-5">
+    <div class="card mx-3 mt-n5 shadow-lg" style="border-radius: 10px; border-left:8px #007bff solid; border-right: none; border-top:none; border-bottom:none">
+        <div class="card-body">
+            <h4 class="card-title mb-3 text-primary text-uppercase">Add News</h4>
+
+            <form method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="text" asp-for="news.NewsTitle" class="form-control" id="floatingTextInput1" placeholder="Title">
+                            <span asp-validation-for="news.NewsTitle"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <select class="form-control form-control-md" asp-for="news.SectionId">
+                            @foreach (var s in Model.sections)
+                            {
+                                <option value="@s.SectionId">@s.SectionName</option>
+                            }
+                        </select>
+                        <span asp-validation-for="news.SectionId"></span>
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" asp-for="news.NewsDescription" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <span asp-validation-for="news.NewsDescription"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <div class="custom-file">
+                        <input type="file" asp-for="news.NewsImage" class="custom-file-input" id="validatedCustomFile">
+                        <label class="custom-file-label" for="validatedCustomFile">News Image </label>
+                        <span asp-validation-for="news.NewsImage"></span>
+                    </div>
+                </div>
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" asp-for="news.BreakingNews" type="checkbox" id="flexSwitchCheckChecked">
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Breaking News</label>
+                    <span asp-validation-for="news.BreakingNews"></span>
+                </div>
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" asp-for="news.HighlightNews" type="checkbox" id="flexSwitchCheckChecked">
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Highlight News</label>
+                    <span asp-validation-for="news.HighlightNews"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+        </div>
+    </div>
+</div>

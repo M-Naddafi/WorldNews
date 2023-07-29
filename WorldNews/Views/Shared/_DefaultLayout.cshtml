@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<partial name="_HeaderPartial" />
+
+<body>
+
+    @*<partial name="_LoaderPartial" />*@
+
+    <div id="wrapper">
+        <partial name="_NavPartial" />
+        @await Component.InvokeAsync("SectionComponent")
+        @RenderBody();
+        @await Component.InvokeAsync("FooterComponent")
+    </div>
+    <partial name="_ScriptsPartial" />
+
+</body>
+
+</html>

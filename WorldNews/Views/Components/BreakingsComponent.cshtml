@@ -1,0 +1,33 @@
+﻿@using WorldNews.DataLayer.Models
+@model IEnumerable<News>
+
+<section class="section first-section">
+    <div class="container-fluid">
+        <div style="padding-left:3px" class="section-title">
+            <h3 class="color-red"><a href="#" title="">Breaking</a></h3>
+        </div>
+        <div class="masonry-blog clearfix row">
+
+            @foreach (var item in Model)
+            {
+                <div class="col hidden-md-down">
+                    <div class="masonry-box post-media" style="height:20em">
+                        <img src="~/news/image/@item.NewsImage" alt="" class="h-100">
+                        <div class="shadoweffect">
+                            <div class="shadow-desc">
+                                <div class="blog-meta">
+                                    <span class="bg-aqua"><a href="/Section/@item.Section.SectionId/@item.Section.SectionName" title="">@item.Section.SectionName</a></span>
+                                    <h4><a asp-controller="News" asp-route-id="@item.NewsId" title="">@item.NewsTitle</a></h4>
+                                    <small><a href="#" title="">@item.CreateDate</a></small>
+                                    <small><a href="/Author/@item.User.UserName" title="">@item.User.UserName</a></small>
+                                </div><!-- end meta -->
+                            </div><!-- end shadow-desc -->
+                        </div><!-- end shadow -->
+                    </div><!-- end post-media -->
+                </div>
+
+                <!-- end right-side -->
+            }
+        </div><!-- end masonry -->
+    </div>
+</section>

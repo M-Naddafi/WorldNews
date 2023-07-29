@@ -1,0 +1,26 @@
+﻿@page "{id}"
+@model WorldNews.Pages.SectionPanel.DeleteSectionModel
+@{
+}
+
+
+<div class="container p-5">
+    <div class="card mx-3 mt-n5 shadow-lg" style="border-radius: 10px; border-left:8px #e74a3b solid; border-right: none; border-top:none; border-bottom:none">
+        <div class="card-body">
+            <h4 class="card-title mb-3 text-danger text-uppercase">Delete Section</h4>
+
+            <form method="post">
+                <input hidden asp-for="section.SectionId" />
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input disabled type="text" asp-for="section.SectionName" class="form-control" id="floatingTextInput1" placeholder="Section Title">
+                            <span asp-validation-for="section.SectionName"></span>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
